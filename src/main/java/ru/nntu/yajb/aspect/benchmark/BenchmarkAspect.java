@@ -6,8 +6,6 @@ import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import ru.nntu.yajb.model.BenchmarkData;
 import ru.nntu.yajb.model.MetaData;
 import ru.nntu.yajb.model.PayloadData;
@@ -17,13 +15,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static ru.nntu.yajb.aspect.benchmark.CollectingMode.ALL;
 import static ru.nntu.yajb.aspect.benchmark.CollectingMode.PAYLOADED_META;
 
 
 @Aspect
 public class BenchmarkAspect {
-    private static final Logger LOG = LoggerFactory.getLogger(BenchmarkAspect.class);
     private static final long THREAD_TIME_STUB = -1;
 
     @Inject
@@ -50,7 +46,8 @@ public class BenchmarkAspect {
                 THREAD_TIME_STUB
         );
         BenchmarkData data = new BenchmarkData(metaData);
-        if (collectionModeAny(methodSignature, ALL, PAYLOADED_META)) {
+        CollectingMode mode = methodSignature.getMethod().getAnnotation(Benchmark.class).collect();
+        if (mode == PAYLOADED_META) {
             data.setPayloadData(collectPayloadData());
         }
         benchmarkDataService.put(data);
@@ -73,11 +70,6 @@ public class BenchmarkAspect {
 
     private String getReturnType(MethodSignature methodSignature) {
         return methodSignature.getReturnType().getCanonicalName();
-    }
-
-    private boolean collectionModeAny(MethodSignature methodSignature, CollectingMode... modes) {
-        CollectingMode type = methodSignature.getMethod().getAnnotation(Benchmark.class).collect();
-        return Arrays.asList(modes).contains(type);
     }
 
     private PayloadData collectPayloadData() {

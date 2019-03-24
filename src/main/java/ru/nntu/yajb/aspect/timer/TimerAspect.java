@@ -15,7 +15,6 @@ public class TimerAspect {
         long startTime = System.currentTimeMillis();
 
         Object result = joinPoint.proceed();
-        LOG.info("");
         long stopTime = System.currentTimeMillis() - startTime;
         LOG.info(String.format("%s is finished in %s ms", getTargetAlias(joinPoint), stopTime));
         return result;
