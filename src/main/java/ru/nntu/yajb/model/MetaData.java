@@ -1,9 +1,13 @@
 package ru.nntu.yajb.model;
 
 
+import java.util.List;
+
 public class MetaData {
-    private String className;
+    private String classType;
     private String methodName;
+    private List<String> argumentTypes;
+    private String returnType;
     private long methodStartTime;
     private long methodRunTime;
     private String threadName;
@@ -12,21 +16,23 @@ public class MetaData {
     public MetaData() {
     }
 
-    public MetaData(String className, String methodName, long methodStartTime, long methodRunTime, String threadName, long threadRunTime) {
-        this.className = className;
+    public MetaData(String classType, String methodName, List<String> argumentTypes, String returnType, long methodStartTime, long methodRunTime, String threadName, long threadRunTime) {
+        this.classType = classType;
         this.methodName = methodName;
+        this.argumentTypes = argumentTypes;
+        this.returnType = returnType;
         this.methodStartTime = methodStartTime;
         this.methodRunTime = methodRunTime;
         this.threadName = threadName;
         this.threadRunTime = threadRunTime;
     }
 
-    public String getClassName() {
-        return className;
+    public String getClassType() {
+        return classType;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setClassType(String classType) {
+        this.classType = classType;
     }
 
     public String getMethodName() {
@@ -35,6 +41,22 @@ public class MetaData {
 
     public void setMethodName(String methodName) {
         this.methodName = methodName;
+    }
+
+    public List<String> getArgumentTypes() {
+        return argumentTypes;
+    }
+
+    public void setArgumentTypes(List<String> argumentTypes) {
+        this.argumentTypes = argumentTypes;
+    }
+
+    public String getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(String returnType) {
+        this.returnType = returnType;
     }
 
     public long getMethodStartTime() {
@@ -67,5 +89,19 @@ public class MetaData {
 
     public void setThreadRunTime(long threadRunTime) {
         this.threadRunTime = threadRunTime;
+    }
+
+    @Override
+    public String toString() {
+        return "MetaData{" +
+                "classType='" + classType + '\'' +
+                ", methodName='" + methodName + '\'' +
+                ", argumentTypes=" + argumentTypes +
+                ", returnType='" + returnType + '\'' +
+                ", methodStartTime=" + methodStartTime +
+                ", methodRunTime=" + methodRunTime +
+                ", threadName='" + threadName + '\'' +
+                ", threadRunTime=" + threadRunTime +
+                '}';
     }
 }

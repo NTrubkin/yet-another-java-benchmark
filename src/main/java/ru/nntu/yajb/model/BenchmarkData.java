@@ -2,14 +2,14 @@ package ru.nntu.yajb.model;
 
 public class BenchmarkData {
     private MetaData metaData;
-    private ArgumentData argumentData;
+    private PayloadData payloadData;
 
     public BenchmarkData() {
     }
 
-    public BenchmarkData(MetaData metaData, ArgumentData argumentData) {
+    public BenchmarkData(MetaData metaData, PayloadData payloadData) {
         this.metaData = metaData;
-        this.argumentData = argumentData;
+        this.payloadData = payloadData;
     }
 
     public MetaData getMetaData() {
@@ -20,11 +20,19 @@ public class BenchmarkData {
         this.metaData = metaData;
     }
 
-    public ArgumentData getArgumentData() {
-        return argumentData;
+    public PayloadData getPayloadData() {
+        return payloadData;
     }
 
-    public void setArgumentData(ArgumentData argumentData) {
-        this.argumentData = argumentData;
+    public void setPayloadData(PayloadData payloadData) {
+        this.payloadData = payloadData;
+    }
+
+    @Override
+    public String toString() {
+        return "BenchmarkData{" +
+                "metaData=" + metaData +
+                ", payloadData=" + payloadData +
+                '}';
     }
 }
