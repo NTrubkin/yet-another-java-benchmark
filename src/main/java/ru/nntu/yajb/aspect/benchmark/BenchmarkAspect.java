@@ -1,28 +1,29 @@
-package ru.nntu.yajb.benchmark;
+package ru.nntu.yajb.aspect.benchmark;
 
 import com.google.inject.Inject;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.nntu.yajb.service.BenchmarkDataService;
 
 
 @Aspect
 public class BenchmarkAspect {
+    private static final Logger LOG = LoggerFactory.getLogger(BenchmarkAspect.class);
 
     @Inject
     private BenchmarkDataService benchmarkDataService;
 
-    @Around("@annotation(ru.nntu.yajb.benchmark.Benchmark) && execution(* *(..))")
+    @Around("@annotation(ru.nntu.yajb.aspect.benchmark.Benchmark) && execution(* *(..))")
     public Object showTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
 
-        System.out.println("");
         Object result = joinPoint.proceed();
 
         long stopTime = System.currentTimeMillis() - startTime;
-        System.out.println(String.format("%s is finished in %s ms", getTargetAlias(joinPoint), stopTime));
-        System.out.println("");
+        LOG.info(String.format("%s is finished in %s ms", getTargetAlias(joinPoint), stopTime));
         benchmarkDataService.put(null);
         return result;
     }

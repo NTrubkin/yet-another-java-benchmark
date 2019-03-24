@@ -1,4 +1,4 @@
-package ru.nntu.yajb.benchmark;
+package ru.nntu.yajb.aspect.benchmark;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -3,7 +3,7 @@ package ru.nntu.yajb.config;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import org.aspectj.lang.Aspects;
-import ru.nntu.yajb.benchmark.BenchmarkAspect;
+import ru.nntu.yajb.aspect.benchmark.BenchmarkAspect;
 import ru.nntu.yajb.service.BenchmarkDataService;
 import ru.nntu.yajb.service.BenchmarkDataServiceImpl;
 

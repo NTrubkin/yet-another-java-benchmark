@@ -1,4 +1,4 @@
-package ru.nntu.yajb.timer;
+package ru.nntu.yajb.aspect.timer;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
