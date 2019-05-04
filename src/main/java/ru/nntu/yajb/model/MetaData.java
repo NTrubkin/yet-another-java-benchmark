@@ -1,6 +1,5 @@
 package ru.nntu.yajb.model;
 
-
 import java.util.List;
 
 public class MetaData {

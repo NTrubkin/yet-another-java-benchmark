@@ -1,7 +1,8 @@
 package ru.nntu.yajb.model;
 
-
+// Данные окружения сессии
 public class ContextData {
+    // todo: add guid
     private String appName;
     private long appStartTime;
     private boolean debugMode;

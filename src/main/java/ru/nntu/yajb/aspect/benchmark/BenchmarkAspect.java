@@ -9,7 +9,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import ru.nntu.yajb.model.BenchmarkData;
 import ru.nntu.yajb.model.MetaData;
 import ru.nntu.yajb.model.PayloadData;
-import ru.nntu.yajb.service.BenchmarkDataService;
+import ru.nntu.yajb.service.data.BenchmarkDataService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +31,7 @@ public class BenchmarkAspect {
 
         Object result = joinPoint.proceed();
 
+        // todo: replace to nanoTime?
         long runTime = System.currentTimeMillis() - startTime;
 
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
