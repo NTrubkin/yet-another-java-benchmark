@@ -2,45 +2,39 @@ package ru.nntu.yajb.model;
 
 // Данные одного измерения (бенчмарка)
 public class BenchmarkData {
-	// todo: add guid
-	// todo: add parent
-	private MetaData metaData;
+	private Meta meta;
 	// todo: @nullable
-	private PayloadData payloadData;
+	private Payload payload;
 
 	public BenchmarkData() {
 	}
 
-	public BenchmarkData(MetaData metaData) {
-		this.metaData = metaData;
+	public BenchmarkData(Meta meta, Payload payload) {
+		this.meta = meta;
+		this.payload = payload;
 	}
 
-	public BenchmarkData(MetaData metaData, PayloadData payloadData) {
-		this.metaData = metaData;
-		this.payloadData = payloadData;
+	public Meta getMeta() {
+		return meta;
 	}
 
-	public MetaData getMetaData() {
-		return metaData;
+	public void setMeta(Meta meta) {
+		this.meta = meta;
 	}
 
-	public void setMetaData(MetaData metaData) {
-		this.metaData = metaData;
+	public Payload getPayload() {
+		return payload;
 	}
 
-	public PayloadData getPayloadData() {
-		return payloadData;
-	}
-
-	public void setPayloadData(PayloadData payloadData) {
-		this.payloadData = payloadData;
+	public void setPayload(Payload payload) {
+		this.payload = payload;
 	}
 
 	@Override
 	public String toString() {
 		return "BenchmarkData{" +
-				"metaData=" + metaData +
-				", payloadData=" + payloadData +
+				"meta=" + meta +
+				", payload=" + payload +
 				'}';
 	}
 }

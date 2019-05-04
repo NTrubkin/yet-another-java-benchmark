@@ -3,22 +3,22 @@ package ru.nntu.yajb.model;
 import java.util.List;
 
 public class DataPackage {
-	private ContextData context;
+	private Context context;
 	private List<BenchmarkData> data;
 
 	public DataPackage() {
 	}
 
-	public DataPackage(ContextData context, List<BenchmarkData> data) {
+	public DataPackage(Context context, List<BenchmarkData> data) {
 		this.context = context;
 		this.data = data;
 	}
 
-	public ContextData getContext() {
+	public Context getContext() {
 		return context;
 	}
 
-	public void setContext(ContextData context) {
+	public void setContext(Context context) {
 		this.context = context;
 	}
 

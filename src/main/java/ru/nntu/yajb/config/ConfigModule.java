@@ -5,8 +5,8 @@ import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import org.aspectj.lang.Aspects;
 import ru.nntu.yajb.aspect.benchmark.BenchmarkAspect;
-import ru.nntu.yajb.service.data.BenchmarkDataService;
-import ru.nntu.yajb.service.data.SimpleBenchmarkDataService;
+import ru.nntu.yajb.service.data.BenchmarkService;
+import ru.nntu.yajb.service.data.SimpleBenchmarkService;
 import ru.nntu.yajb.service.postman.Postman;
 import ru.nntu.yajb.service.send.control.SendControlService;
 import ru.nntu.yajb.util.BenchmarkException;
@@ -25,8 +25,8 @@ public class ConfigModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		Properties props = loadProperties();
-		bind(BenchmarkDataService.class)
-				.to(SimpleBenchmarkDataService.class)
+		bind(BenchmarkService.class)
+				.to(SimpleBenchmarkService.class)
 				.in(Singleton.class);
 		try {
 			bind(SendControlService.class)
