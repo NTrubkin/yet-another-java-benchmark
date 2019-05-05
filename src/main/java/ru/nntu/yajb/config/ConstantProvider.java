@@ -10,4 +10,9 @@ public class ConstantProvider {
 	// property default values
 	public static final String SEND_CONTROL_VALUE = "ru.nntu.yajb.service.send.control.AlwaysAllowSendControlService";
 	public static final String POSTMAN_VALUE = "ru.nntu.yajb.service.postman.LoggerPostman";
+
+	public static final String JVM_PARAMS_DELIMITER = " ";
+
+	private ConstantProvider() {
+	}
 }

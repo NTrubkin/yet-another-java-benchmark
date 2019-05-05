@@ -28,12 +28,11 @@ public class BenchmarkAspect {
 	@Around("@annotation(ru.nntu.yajb.aspect.benchmark.Benchmark) && execution(* *(..))")
 	public Object performBenchmark(ProceedingJoinPoint joinPoint) throws Throwable {
 		BenchmarkData data = benchmarkService.initBenchmark();
-		long startTime = System.currentTimeMillis();
+		long startTime = System.nanoTime();
 
 		Object result = joinPoint.proceed();
 
-		// todo: replace to nanoTime?
-		long runTime = System.currentTimeMillis() - startTime;
+		long runTime = System.nanoTime() - startTime;
 
 		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
 		Meta meta = data.getMeta();

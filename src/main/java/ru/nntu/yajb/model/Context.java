@@ -5,27 +5,37 @@ import java.util.UUID;
 // Данные окружения сессии
 public class Context {
 	private UUID id;
-	private String appName;
+	private String appName;     // todo: implement this
 	private long appStartTime;
-	private boolean debugMode;
-	private String jvm;
+	private boolean debugMode;  // todo: implement this
+	private String javaVersion;
+	private String jvmName;
+	private String jvmVendor;
 	private String jvmVersion;
-	private String os;
-	private String cpu;
-	private String ram;
+	private String osName;
+	private String osVersion;
+	private String osArch;
+	private String cpu;         // todo: implement this
+	private String ram;         // todo: implement this
+	private String jvmParams;
 
 	public Context() {
 		id = UUID.randomUUID();
 	}
 
-	public Context(String appName, long appStartTime, boolean debugMode, String jvm, String jvmVersion, String os, String cpu, String ram) {
+	public Context(String appName, long appStartTime, boolean debugMode, String javaVersion, String jvmName, String jvmVendor, String jvmVersion, String osName, String osVersion, String osArch, String cpu, String ram, String jvmParams) {
+		this.jvmParams = jvmParams;
 		id = UUID.randomUUID();
 		this.appName = appName;
 		this.appStartTime = appStartTime;
 		this.debugMode = debugMode;
-		this.jvm = jvm;
+		this.javaVersion = javaVersion;
+		this.jvmName = jvmName;
+		this.jvmVendor = jvmVendor;
 		this.jvmVersion = jvmVersion;
-		this.os = os;
+		this.osName = osName;
+		this.osVersion = osVersion;
+		this.osArch = osArch;
 		this.cpu = cpu;
 		this.ram = ram;
 	}
@@ -62,12 +72,28 @@ public class Context {
 		this.debugMode = debugMode;
 	}
 
-	public String getJvm() {
-		return jvm;
+	public String getJavaVersion() {
+		return javaVersion;
 	}
 
-	public void setJvm(String jvm) {
-		this.jvm = jvm;
+	public void setJavaVersion(String javaVersion) {
+		this.javaVersion = javaVersion;
+	}
+
+	public String getJvmName() {
+		return jvmName;
+	}
+
+	public void setJvmName(String jvmName) {
+		this.jvmName = jvmName;
+	}
+
+	public String getJvmVendor() {
+		return jvmVendor;
+	}
+
+	public void setJvmVendor(String jvmVendor) {
+		this.jvmVendor = jvmVendor;
 	}
 
 	public String getJvmVersion() {
@@ -78,12 +104,28 @@ public class Context {
 		this.jvmVersion = jvmVersion;
 	}
 
-	public String getOs() {
-		return os;
+	public String getOsName() {
+		return osName;
 	}
 
-	public void setOs(String os) {
-		this.os = os;
+	public void setOsName(String osName) {
+		this.osName = osName;
+	}
+
+	public String getOsVersion() {
+		return osVersion;
+	}
+
+	public void setOsVersion(String osVersion) {
+		this.osVersion = osVersion;
+	}
+
+	public String getOsArch() {
+		return osArch;
+	}
+
+	public void setOsArch(String osArch) {
+		this.osArch = osArch;
 	}
 
 	public String getCpu() {
@@ -102,6 +144,14 @@ public class Context {
 		this.ram = ram;
 	}
 
+	public String getJvmParams() {
+		return jvmParams;
+	}
+
+	public void setJvmParams(String jvmParams) {
+		this.jvmParams = jvmParams;
+	}
+
 	@Override
 	public String toString() {
 		return "Context{" +
@@ -109,11 +159,16 @@ public class Context {
 				", appName='" + appName + '\'' +
 				", appStartTime=" + appStartTime +
 				", debugMode=" + debugMode +
-				", jvm='" + jvm + '\'' +
+				", javaVersion='" + javaVersion + '\'' +
+				", jvmName='" + jvmName + '\'' +
+				", jvmVendor='" + jvmVendor + '\'' +
 				", jvmVersion='" + jvmVersion + '\'' +
-				", os='" + os + '\'' +
+				", osName='" + osName + '\'' +
+				", osVersion='" + osVersion + '\'' +
+				", osArch='" + osArch + '\'' +
 				", cpu='" + cpu + '\'' +
 				", ram='" + ram + '\'' +
+				", jvmParams='" + jvmParams + '\'' +
 				'}';
 	}
 }
