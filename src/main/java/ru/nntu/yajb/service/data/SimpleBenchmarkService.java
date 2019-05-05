@@ -9,6 +9,7 @@ import ru.nntu.yajb.model.BenchmarkData;
 import ru.nntu.yajb.model.Context;
 import ru.nntu.yajb.model.DataPackage;
 import ru.nntu.yajb.model.Meta;
+import ru.nntu.yajb.service.ActiveBenchmarkService;
 import ru.nntu.yajb.service.postman.Postman;
 import ru.nntu.yajb.service.send.control.SendControlService;
 
@@ -24,23 +25,33 @@ public class SimpleBenchmarkService implements BenchmarkService {
 
 	private final List<BenchmarkData> dataList = new ArrayList<>();
 	private final DataPackage dataPackage;
+	private final ActiveBenchmarkService activeBenchmarkService;
+
 
 	@Inject
-	public SimpleBenchmarkService(SendControlService sendControl, Postman postman) {
+	public SimpleBenchmarkService(SendControlService sendControl, Postman postman, ActiveBenchmarkService activeBenchmarkService) {
 		this.sendControl = sendControl;
 		this.postman = postman;
+		this.activeBenchmarkService = activeBenchmarkService;
 
 		dataPackage = new DataPackage(collectContext(), dataList);
 	}
 
+	// todo: think about threads
 	@Override
 	public BenchmarkData initBenchmark() {
-		return new BenchmarkData(new Meta(), null);
+		BenchmarkData data = new BenchmarkData(new Meta(), null);
+		String threadName = Thread.currentThread().getName();
+		data.getMeta().setParentId(activeBenchmarkService.getCurrentBenchmarkId(threadName).orElse(null));
+		activeBenchmarkService.initBenchmark(data.getMeta().getId(), threadName);
+		return data;
 	}
 
+	// todo: think about threads
 	@Override
 	public void reportBenchmark(BenchmarkData data) {
 		dataList.add(data);
+		activeBenchmarkService.reportBenchmark(data.getMeta().getId(), Thread.currentThread().getName());
 
 		if (sendControl.sendPackageNow(data)) {
 			postman.send(dataPackage);
