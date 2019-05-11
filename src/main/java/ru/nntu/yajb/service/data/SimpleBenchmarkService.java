@@ -1,10 +1,10 @@
 package ru.nntu.yajb.service.data;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.nntu.yajb.config.ConstantProvider;
 import ru.nntu.yajb.model.BenchmarkData;
 import ru.nntu.yajb.model.Context;
 import ru.nntu.yajb.model.DataPackage;
@@ -17,6 +17,9 @@ import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.nntu.yajb.config.ConstantProvider.JVM_PARAMS_DELIMITER;
+import static ru.nntu.yajb.config.ConstantProvider.SESSION_NOTES_PROP;
+
 public class SimpleBenchmarkService implements BenchmarkService {
 	private static final Logger LOG = LoggerFactory.getLogger(SimpleBenchmarkService.class);
 
@@ -26,13 +29,18 @@ public class SimpleBenchmarkService implements BenchmarkService {
 	private final List<BenchmarkData> dataList = new ArrayList<>();
 	private final DataPackage dataPackage;
 	private final ActiveBenchmarkService activeBenchmarkService;
-
+	private final String sessionNotes;
 
 	@Inject
-	public SimpleBenchmarkService(SendControlService sendControl, Postman postman, ActiveBenchmarkService activeBenchmarkService) {
+	public SimpleBenchmarkService(SendControlService sendControl,
+	                              Postman postman,
+	                              ActiveBenchmarkService activeBenchmarkService,
+	                              @Named(SESSION_NOTES_PROP) String sessionNotes) {
 		this.sendControl = sendControl;
 		this.postman = postman;
 		this.activeBenchmarkService = activeBenchmarkService;
+		this.sessionNotes = sessionNotes;
+
 
 		dataPackage = new DataPackage(collectContext(), dataList);
 	}
@@ -76,11 +84,12 @@ public class SimpleBenchmarkService implements BenchmarkService {
 		context.setJvmVendor(SystemUtils.JAVA_VM_VENDOR);
 		context.setJvmVersion(SystemUtils.JAVA_VM_VERSION);
 		context.setJvmParams(getJvmParams());
+		context.setSessionNotes(sessionNotes);
 		return context;
 	}
 
 	private String getJvmParams() {
 		List<String> params = ManagementFactory.getRuntimeMXBean().getInputArguments();
-		return String.join(ConstantProvider.JVM_PARAMS_DELIMITER, params);
+		return String.join(JVM_PARAMS_DELIMITER, params);
 	}
 }

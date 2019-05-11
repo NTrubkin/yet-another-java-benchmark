@@ -18,13 +18,15 @@ public class Context {
 	private String cpu;         // todo: implement this
 	private String ram;         // todo: implement this
 	private String jvmParams;
+	private String sessionNotes;
 
 	public Context() {
 		id = UUID.randomUUID();
 	}
 
-	public Context(String appName, long appStartTime, boolean debugMode, String javaVersion, String jvmName, String jvmVendor, String jvmVersion, String osName, String osVersion, String osArch, String cpu, String ram, String jvmParams) {
+	public Context(String appName, long appStartTime, boolean debugMode, String javaVersion, String jvmName, String jvmVendor, String jvmVersion, String osName, String osVersion, String osArch, String cpu, String ram, String jvmParams, String sessionNotes) {
 		this.jvmParams = jvmParams;
+		this.sessionNotes = sessionNotes;
 		id = UUID.randomUUID();
 		this.appName = appName;
 		this.appStartTime = appStartTime;
@@ -152,6 +154,15 @@ public class Context {
 		this.jvmParams = jvmParams;
 	}
 
+
+	public String getSessionNotes() {
+		return sessionNotes;
+	}
+
+	public void setSessionNotes(String sessionNotes) {
+		this.sessionNotes = sessionNotes;
+	}
+
 	@Override
 	public String toString() {
 		return "Context{" +
@@ -169,6 +180,7 @@ public class Context {
 				", cpu='" + cpu + '\'' +
 				", ram='" + ram + '\'' +
 				", jvmParams='" + jvmParams + '\'' +
+				", sessionNotes='" + sessionNotes + '\'' +
 				'}';
 	}
 }

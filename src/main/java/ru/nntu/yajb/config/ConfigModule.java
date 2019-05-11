@@ -16,11 +16,15 @@ import ru.nntu.yajb.util.BenchmarkException;
 import java.io.IOException;
 import java.util.Properties;
 
+import static ru.nntu.yajb.config.ConstantProvider.COUNTER_SCS_COUNT_TO_SEND_PROP;
+import static ru.nntu.yajb.config.ConstantProvider.COUNTER_SCS_COUNT_TO_SEND_VALUE;
 import static ru.nntu.yajb.config.ConstantProvider.POSTMAN_PROP;
 import static ru.nntu.yajb.config.ConstantProvider.POSTMAN_VALUE;
 import static ru.nntu.yajb.config.ConstantProvider.PROPERTIES_FILE;
 import static ru.nntu.yajb.config.ConstantProvider.SEND_CONTROL_PROP;
 import static ru.nntu.yajb.config.ConstantProvider.SEND_CONTROL_VALUE;
+import static ru.nntu.yajb.config.ConstantProvider.SESSION_NOTES_PROP;
+import static ru.nntu.yajb.config.ConstantProvider.SESSION_NOTES_VALUE;
 
 
 public class ConfigModule extends AbstractModule {
@@ -62,6 +66,8 @@ public class ConfigModule extends AbstractModule {
 		Properties defaults = new Properties();
 		defaults.setProperty(SEND_CONTROL_PROP, SEND_CONTROL_VALUE);
 		defaults.setProperty(POSTMAN_PROP, POSTMAN_VALUE);
+		defaults.setProperty(COUNTER_SCS_COUNT_TO_SEND_PROP, COUNTER_SCS_COUNT_TO_SEND_VALUE);
+		defaults.setProperty(SESSION_NOTES_PROP, SESSION_NOTES_VALUE);
 		return defaults;
 	}
 }

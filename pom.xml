@@ -36,19 +36,26 @@
             <version>1.7.25</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/kr.pe.kwonnam.slf4j-lambda/slf4j-lambda-core -->
-        <dependency>
-            <groupId>kr.pe.kwonnam.slf4j-lambda</groupId>
-            <artifactId>slf4j-lambda-core</artifactId>
-            <version>0.1</version>
-        </dependency>
-
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-dbutils/commons-dbutils -->
+        <dependency>
+            <groupId>commons-dbutils</groupId>
+            <artifactId>commons-dbutils</artifactId>
+            <version>1.7</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -86,7 +93,12 @@
                         <artifactId>guice</artifactId>
                         <version>4.0</version>
                     </dependency>
-
+                    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.2.5</version>
+                    </dependency>
                 </dependencies>
             </plugin>
         </plugins>

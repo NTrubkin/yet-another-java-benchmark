@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import ru.nntu.yajb.model.BenchmarkData;
 
+import static ru.nntu.yajb.config.ConstantProvider.COUNTER_SCS_COUNT_TO_SEND_PROP;
+
 public class CounterSendControlService implements SendControlService {
 
 	private static final int MIN_COUNT_TO_SEND = 1;
@@ -11,7 +13,7 @@ public class CounterSendControlService implements SendControlService {
 	private int counter = 0;
 
 	@Inject
-	public CounterSendControlService(@Named("yajb.CounterSendControlService.countToSend") int countToSend) {
+	public CounterSendControlService(@Named(COUNTER_SCS_COUNT_TO_SEND_PROP) int countToSend) {
 		if (countToSend <= MIN_COUNT_TO_SEND) {
 			throw new IllegalArgumentException();
 		}
