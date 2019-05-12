@@ -22,6 +22,8 @@ public class ConstantProvider {
 
 	public static final String COUNTER_SCS_COUNT_TO_SEND_VALUE = "1";
 	public static final String JVM_PARAMS_DELIMITER = " ";
+	public static final String ARG_TYPES_SQL_DELIMITER = ", ";
+	public static final String JVM_DEBUG_ARG = "-agentlib:jdwp";
 
 	private ConstantProvider() {
 	}

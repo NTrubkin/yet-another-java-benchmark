@@ -17,6 +17,7 @@ import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ru.nntu.yajb.config.ConstantProvider.JVM_DEBUG_ARG;
 import static ru.nntu.yajb.config.ConstantProvider.JVM_PARAMS_DELIMITER;
 import static ru.nntu.yajb.config.ConstantProvider.SESSION_NOTES_PROP;
 
@@ -76,6 +77,7 @@ public class SimpleBenchmarkService implements BenchmarkService {
 	private Context collectContext() {
 		Context context = new Context();
 		context.setAppStartTime(System.nanoTime());
+		context.setDebugMode(isDebugMode());
 		context.setOsName(SystemUtils.OS_NAME);
 		context.setOsVersion(SystemUtils.OS_VERSION);
 		context.setOsArch(SystemUtils.OS_ARCH);
@@ -91,5 +93,12 @@ public class SimpleBenchmarkService implements BenchmarkService {
 	private String getJvmParams() {
 		List<String> params = ManagementFactory.getRuntimeMXBean().getInputArguments();
 		return String.join(JVM_PARAMS_DELIMITER, params);
+	}
+
+	private static boolean isDebugMode() {
+		return ManagementFactory.getRuntimeMXBean()
+				.getInputArguments()
+				.stream()
+				.anyMatch(arg -> arg.contains(JVM_DEBUG_ARG));
 	}
 }

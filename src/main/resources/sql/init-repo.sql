@@ -7,6 +7,7 @@ create table context
         constraint context_pk
             primary key,
     app_start_time bigint  not null,
+    debug_mode     boolean not null,
     java_version   varchar not null,
     jvm_name       varchar not null,
     jvm_vendor     varchar not null,
