@@ -7,7 +7,7 @@ public class Context {
 	private UUID id;
 	private String appName;     // todo: implement this
 	private long appStartTime;
-	private boolean debugMode;  // todo: implement this
+	private boolean debugMode;
 	private String javaVersion;
 	private String jvmName;
 	private String jvmVendor;
@@ -15,8 +15,11 @@ public class Context {
 	private String osName;
 	private String osVersion;
 	private String osArch;
-	private String cpu;         // todo: implement this
-	private String ram;         // todo: implement this
+	private String cpu;
+	private int availableCores;
+	private long ram;
+	private long swap;
+	private long availableMemory;
 	private String jvmParams;
 	private String sessionNotes;
 
@@ -24,10 +27,9 @@ public class Context {
 		id = UUID.randomUUID();
 	}
 
-	public Context(String appName, long appStartTime, boolean debugMode, String javaVersion, String jvmName, String jvmVendor, String jvmVersion, String osName, String osVersion, String osArch, String cpu, String ram, String jvmParams, String sessionNotes) {
-		this.jvmParams = jvmParams;
-		this.sessionNotes = sessionNotes;
+	public Context(String appName, long appStartTime, boolean debugMode, String javaVersion, String jvmName, String jvmVendor, String jvmVersion, String osName, String osVersion, String osArch, String cpu, int availableCores, long ram, long swap, long availableMemory, String jvmParams, String sessionNotes) {
 		id = UUID.randomUUID();
+
 		this.appName = appName;
 		this.appStartTime = appStartTime;
 		this.debugMode = debugMode;
@@ -39,7 +41,12 @@ public class Context {
 		this.osVersion = osVersion;
 		this.osArch = osArch;
 		this.cpu = cpu;
+		this.availableCores = availableCores;
 		this.ram = ram;
+		this.swap = swap;
+		this.availableMemory = availableMemory;
+		this.jvmParams = jvmParams;
+		this.sessionNotes = sessionNotes;
 	}
 
 	public UUID getId() {
@@ -138,12 +145,36 @@ public class Context {
 		this.cpu = cpu;
 	}
 
-	public String getRam() {
+	public int getAvailableCores() {
+		return availableCores;
+	}
+
+	public void setAvailableCores(int availableCores) {
+		this.availableCores = availableCores;
+	}
+
+	public long getRam() {
 		return ram;
 	}
 
-	public void setRam(String ram) {
+	public void setRam(long ram) {
 		this.ram = ram;
+	}
+
+	public long getSwap() {
+		return swap;
+	}
+
+	public void setSwap(long swap) {
+		this.swap = swap;
+	}
+
+	public long getAvailableMemory() {
+		return availableMemory;
+	}
+
+	public void setAvailableMemory(long availableMemory) {
+		this.availableMemory = availableMemory;
 	}
 
 	public String getJvmParams() {
@@ -153,7 +184,6 @@ public class Context {
 	public void setJvmParams(String jvmParams) {
 		this.jvmParams = jvmParams;
 	}
-
 
 	public String getSessionNotes() {
 		return sessionNotes;
@@ -178,7 +208,10 @@ public class Context {
 				", osVersion='" + osVersion + '\'' +
 				", osArch='" + osArch + '\'' +
 				", cpu='" + cpu + '\'' +
-				", ram='" + ram + '\'' +
+				", availableCores=" + availableCores +
+				", ram=" + ram +
+				", swap=" + swap +
+				", availableMemory=" + availableMemory +
 				", jvmParams='" + jvmParams + '\'' +
 				", sessionNotes='" + sessionNotes + '\'' +
 				'}';

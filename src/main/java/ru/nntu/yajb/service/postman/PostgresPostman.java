@@ -24,8 +24,8 @@ import static ru.nntu.yajb.config.ConstantProvider.USER_PG_POSTMAN_PROP;
 public class PostgresPostman implements Postman {
 	@SuppressWarnings("squid:S2068")
 	private static final String URL_PATTERN = "jdbc:postgresql://%1$s:%2$s/%3$s?user=%4$s&password=%5$s";
-	private static final String INSERT_CONTEXT_SQL_PATTERN = "INSERT INTO context (id, app_start_time, debug_mode, java_version, jvm_name, jvm_vendor, jvm_version, os_name, os_version, os_arch, jvm_params, session_notes) "
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT DO NOTHING";
+	private static final String INSERT_CONTEXT_SQL_PATTERN = "INSERT INTO context (id, app_start_time, debug_mode, java_version, jvm_name, jvm_vendor, jvm_version, os_name, os_version, os_arch, cpu, available_cores, ram, swap, available_memory, jvm_params, session_notes) "
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT DO NOTHING";
 	private static final String INSERT_META_SQL_PATTERN = "INSERT INTO meta (id, context_id, parent_id, class_type, method_name, argument_types, return_type, method_start_time, method_run_time, thread_name, thread_run_time, threw_exception) "
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -70,6 +70,11 @@ public class PostgresPostman implements Postman {
 				context.getOsName(),
 				context.getOsVersion(),
 				context.getOsArch(),
+				context.getCpu(),
+				context.getAvailableCores(),
+				context.getRam(),
+				context.getSwap(),
+				context.getAvailableMemory(),
 				context.getJvmParams(),
 				context.getSessionNotes());
 	}

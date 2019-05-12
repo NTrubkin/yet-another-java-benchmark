@@ -3,20 +3,25 @@ drop table if exists context;
 
 create table context
 (
-    id             uuid    not null
+    id               uuid    not null
         constraint context_pk
             primary key,
-    app_start_time bigint  not null,
-    debug_mode     boolean not null,
-    java_version   varchar not null,
-    jvm_name       varchar not null,
-    jvm_vendor     varchar not null,
-    jvm_version    varchar not null,
-    os_name        varchar not null,
-    os_version     varchar not null,
-    os_arch        varchar not null,
-    jvm_params     varchar not null,
-    session_notes  varchar not null
+    app_start_time   bigint  not null,
+    debug_mode       boolean not null,
+    java_version     varchar not null,
+    jvm_name         varchar not null,
+    jvm_vendor       varchar not null,
+    jvm_version      varchar not null,
+    os_name          varchar not null,
+    os_version       varchar not null,
+    os_arch          varchar not null,
+    cpu              varchar not null,
+    available_cores  varchar not null,
+    ram              varchar not null,
+    swap             varchar not null,
+    available_memory varchar not null,
+    jvm_params       varchar not null,
+    session_notes    varchar not null
 );
 
 create table meta

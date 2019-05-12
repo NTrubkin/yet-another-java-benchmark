@@ -7,6 +7,8 @@ import org.aspectj.lang.Aspects;
 import ru.nntu.yajb.aspect.benchmark.BenchmarkAspect;
 import ru.nntu.yajb.service.ActiveBenchmarkService;
 import ru.nntu.yajb.service.ActiveBenchmarkServiceImpl;
+import ru.nntu.yajb.service.OshiSystemInfoService;
+import ru.nntu.yajb.service.SystemInfoService;
 import ru.nntu.yajb.service.data.BenchmarkService;
 import ru.nntu.yajb.service.data.SimpleBenchmarkService;
 import ru.nntu.yajb.service.postman.Postman;
@@ -36,6 +38,9 @@ public class ConfigModule extends AbstractModule {
 				.in(Singleton.class);
 		bind(ActiveBenchmarkService.class)
 				.to(ActiveBenchmarkServiceImpl.class)
+				.in(Singleton.class);
+		bind(SystemInfoService.class)
+				.to(OshiSystemInfoService.class)
 				.in(Singleton.class);
 
 		try {
